@@ -1,7 +1,4 @@
-body{
+body {
   background: black;
-}
-
-.status{
-  color: white;
+  font-family: "Times New Roman", Times, serif !important;
 }
