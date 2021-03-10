@@ -1,18 +1,12 @@
-window.onload = function() {
-  let error;
-  let statusWeb = document.getElementById('status');
-  statusWeb.innerHTML = `status`;
+let statusWeb = document.getElementById('status')
+let errorText = document.getElementById('error')
 
-  const status = async function() {
-    return await fetch('').then(s => {
-      if (s.ok) {
-        return `<div class=''>I'm just wake up</div>`;
-      } else {
-        return `I'm on break`;
-      }
-    }).catch(e => {
-      error = e;
-      return `I'm have a poblem`;
-    });
-  }
-});
+//statusWeb.innerHTML = `status`
+window.onload = async function() {
+
+  return await fetch('https://billy-bot-1.yansaan.repl.co').then(s => s.json()).then(r => {}).catch(e => {
+      errorText.textContent = e
+      statusWeb.innerHTML = `I'm have a poblem`
+    })
+
+}
