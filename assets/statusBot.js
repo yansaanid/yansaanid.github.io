@@ -29,32 +29,25 @@ window.onload = async function() {
       }
 
       stat.response_times.forEach(c => {
-        const dates = new Date(c.datetime)
-        label.push(`${dates.toLocaleString("en-US", {
-          month: "short"
-        })} ${dates.toLocaleString("en-US", {
-          day: "numeric"
+        const dates = new Date(c.datetime * 1000)
+        labels.push(`${dates.toLocaleString("en-US", {
+          timeStyle: "short"
         })}`)
 
         data.push(c.value)
+        borderColor.push('rgba(255, 99, 132, 1)')
       })
 
       let getChart = new Chart(billyChart, {
         type: 'line',
         data: {
-          labels: labels,
+          labels,
           datasets: [{
             label: '# milisec',
-            data: data,
+            data,
             backgroundColor:
             'rgba(255, 99, 132, 0.2)',
-            borderColor:
-            'rgba(255, 99, 132, 1)'
-            /*'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'*/,
+            borderColor,
             borderWidth: 1
           }]
         },
@@ -62,7 +55,8 @@ window.onload = async function() {
           scales: {
             yAxes: [{
               ticks: {
-                beginAtZero: true
+                beginAtZero: true,
+                suggestedMax: 5000
               }
             }]
           }
