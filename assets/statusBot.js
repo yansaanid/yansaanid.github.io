@@ -3,14 +3,14 @@ let errorText = document.getElementById('error')
 let tableStat = document.getElementById('table')
 let billyChart = document.getElementById('billyChart')
 
-//statusWeb.innerHTML = `status`
+const labels = []
+const data = []
+const borderColor = []
+
 window.onload = async function() {
 
   await fetch('https://v1.nocodeapi.com/yansaan/uptime/uyUyRwkEZeMkvirR?monitors=787418020').then(r => r.json()).then(async r => {
     const stat = r.monitors[0]
-    let labels = []
-    let data = []
-    let borderColor = []
 
     switch (stat.status) {
       case 2:
@@ -24,13 +24,18 @@ window.onload = async function() {
         break;
 
       default:
-        // code
+        statusWeb.innerHTML = `I'm have a poblem`
+        break;
       }
-      
+
       stat.response_times.forEach(c => {
         const dates = new Date(c.datetime)
-        label.push(`${dates.toLocaleString("en-US", {month: "short"})} ${dates.toLocaleString("en-US", {day: "numeric"})}`)
-        
+        label.push(`${dates.toLocaleString("en-US", {
+          month: "short"
+        })} ${dates.toLocaleString("en-US", {
+          day: "numeric"
+        })}`)
+
         data.push(c.value)
       })
 
@@ -41,16 +46,15 @@ window.onload = async function() {
           datasets: [{
             label: '# milisec',
             data: data,
-            backgroundColor: 
-              'rgba(255, 99, 132, 0.2)',
-            borderColor: 
-              'rgba(255, 99, 132, 1)'
-              /*'rgba(54, 162, 235, 1)',
+            backgroundColor:
+            'rgba(255, 99, 132, 0.2)',
+            borderColor:
+            'rgba(255, 99, 132, 1)'
+            /*'rgba(54, 162, 235, 1)',
               'rgba(255, 206, 86, 1)',
               'rgba(75, 192, 192, 1)',
               'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'*/
-            ,
+              'rgba(255, 159, 64, 1)'*/,
             borderWidth: 1
           }]
         },
@@ -63,9 +67,9 @@ window.onload = async function() {
             }]
           }
         }
-        
+
       })
-      
+
     })
 
     /*await fetch('https://billy-bot-1.yansaan.repl.co').then(s => {
