@@ -20,7 +20,8 @@ if (!theme) {
 
 scroll()
 
-themes.onclick = () => {
+themes.onclick = e => {
+  e.preventDefault()
   if (body.classList.contains('darker')) {
     body.classList.replace('darker', 'default')
     localStorage.setItem('theme', 'default')
