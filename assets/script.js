@@ -1,8 +1,41 @@
 const navBar = document.getElementById("navbar")
 const menu = document.getElementById("navbarNavAltMarkup")
+const themes = document.getElementById("themes")
+const body = document.body
+let navbarOpen = false
+
+const bgWhite = '255, 255, 255'
+const bgDark = '33, 33, 33'
+let navBg
+
+let theme = localStorage.getItem('theme')
+if (!theme) {
+  localStorage.setItem('theme', 'default')
+  body.classList.add('default')
+   navBg = bgWhite
+} else {
+  body.classList.add(theme)
+  navBg = theme === 'darker' ? bgDark : bgWhite
+}
+
 scroll()
 
-window.onscroll = function () {
+themes.onclick = () => {
+  if (body.classList.contains('darker')) {
+    body.classList.remove('darker')
+    body.classList.add('default')
+    localStorage.setItem('theme', 'default')
+    navBg = bgWhite
+  } else {
+    body.classList.remove('default')
+    body.classList.add('darker')
+    localStorage.setItem('theme', 'darker')
+    navBg = bgDark
+  }
+  scroll()
+}
+
+window.onscroll = () => {
   scroll()
 }
 
@@ -19,22 +52,29 @@ function scroll() {
       .join(".")
   )
 
+if (!navbarOpen) {
   if (calc >= 1) {
-    navBar.style.backgroundColor = `rgba(255, 255, 255, 1)`
+    navBar.style.backgroundColor = `rgba(${navBg}, 1)`
     navBar.style.boxShadow = `0 .125rem 1rem rgba(0, 0, 0, .15)`
   } else if (calc <= 0) {
-    navBar.style.backgroundColor = `rgba(255, 255, 255, 0)`
+    navBar.style.backgroundColor = `rgba(${navBg}, 0)`
     navBar.style.boxShadow = `0 -1rem 1rem rgba(0, 0, 0, .15)`
   } else {
-    navBar.style.backgroundColor = `rgba(255, 255, 255, ${calc})`
+    navBar.style.backgroundColor = `rgba(${navBg}, ${calc})`
     navBar.style.boxShadow = `0 ${calc - 0.875}rem 1rem rgba(0, 0, 0, .15)`
   }
+} else {
+  navBar.style.backgroundColor = `rgba(${navBg}, 1)`
+  navBar.style.boxShadow = `0 .125rem 1rem rgba(0, 0, 0, .15)`
+}
 }
 
 menu.addEventListener("show.bs.collapse", function () {
-  navBar.style.backgroundColor = `rgba(255, 255, 255, 1)`
+  navbarOpen = true
+  navBar.style.backgroundColor = `rgba(${navBg}, 1)`
   navBar.style.boxShadow = `0 .125rem 1rem rgba(0, 0, 0, .15)`
 })
 menu.addEventListener("hidden.bs.collapse", function () {
+  navbarOpen = false
   scroll()
 })

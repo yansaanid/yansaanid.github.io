@@ -1,12 +1,41 @@
 // Main page
-  //--red: #ef5350
-  //--white: #fff
-  //--pink: #f06292
-  //--yellow: #ffb74d
-  //--purpple: #9c27b0
+:root
+  --red: #ef5350
+  --white: #fff
+  --pink: #f06292
+  --yellow: #ffb74d
+  --purpple: #9c27b0
+  --dark1: #424242
+  --dark2: #9e9e9e
+  --dark3: #e0e0e0
+  --black: #000000
 
-.default
+.default, .darker
   min-height: 3000px
+  
+.default
+  --logo1: var(--pink)
+  --logo2: var(--yellow)
+  --logo3: var(--purpple)
+  --bg-red: var(--red)
+  --bg-white: var(--white)
+  --theme: var(--dark1)
+  --nav-color: var(--dark2)
+  --active-nav: var(--black)
+  
+.darker
+  --logo1: var(--white)
+  --logo2: var(--white)
+  --logo3: var(--white)
+  --bg-red: var(--dark1)
+  --bg-white: var(--dark2)
+  --theme: var(--white)
+  --nav-color: var(--white)
+  --active-nav: var(--dark3)
+  
+body
+  background-color: var(--bg-white)
+  transition: background-color 500ms ease-in-out color 1000ms ease-in-out
 
 .navbar-brand
   svg
@@ -14,26 +43,30 @@
     transform: translateY(-1px)
 
     .st0
-      fill: #f06292
+      fill: var(--logo1)
 
     .st1
-      fill: #ffb74d
+      fill: var(--logo2)
 
     .st2
-      fill: #9c27b0
+      fill: var(--logo3)
 
 .nav-link
+  color: var(--nav-color) !important
   .theme-changes
     width: 1.4em
     height: 1.4em
     margin-top: 1px
     margin-right: .2em
     display: inline-block
-    background-color: #000
+    background-color: var(--theme)
     border-radius: 25px
   span
     display: inline-block
     transform: translateY(-5px)
+
+.nav-link.active
+  color: var(--active-nav) !important
 
 section.main
   padding-top: 5em
@@ -45,15 +78,15 @@ section.main
     margin-bottom: 0
 
 .red
-  color: #fff
-  background: #ef5350
+  color: var(--bg-white)
+  background: var(--bg-red)
 
 .white
-  color: #ef5350
-  background: #ffffff
+  color: var(--bg-red)
+  background: var(--bg-white)
 
 .gelombang1
-  fill: #ef5350
+  fill: var(--bg-red)
 
 // Billy Page
 .billy
