@@ -11,10 +11,10 @@ let navBg
 let theme = localStorage.getItem('theme')
 if (!theme) {
   localStorage.setItem('theme', 'default')
-  body.classList.add('default')
    navBg = bgWhite
 } else {
-  body.classList.add(theme)
+  if (theme === 'darker')
+    body.classList.replace('default', 'darker')
   navBg = theme === 'darker' ? bgDark : bgWhite
 }
 
@@ -22,13 +22,11 @@ scroll()
 
 themes.onclick = () => {
   if (body.classList.contains('darker')) {
-    body.classList.remove('darker')
-    body.classList.add('default')
+    body.classList.replace('darker', 'default')
     localStorage.setItem('theme', 'default')
     navBg = bgWhite
   } else {
-    body.classList.remove('default')
-    body.classList.add('darker')
+    body.classList.replace('default', 'darker')
     localStorage.setItem('theme', 'darker')
     navBg = bgDark
   }
