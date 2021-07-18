@@ -9,25 +9,25 @@
       defer
     ></script>
     <script defer>
-      Redirect()
-
-      const Redirect = ()=>{
+      const Redirect = () => {
         if (!navigator.geolocation) {
-        $.get(
-          "http://ip-api.com/json",
-          function (response) {
-            if (response.countryCode.toLowerCase() == "id") {
-              window.location.replace(
-                "https://karyakarsa.com/yansaan/myclicker-auto-clicker-gratis-dari"
-              );
-            } else {
-              window.location.replace("https://www.patreon.com/posts/53816811");
-            }
-          },
-          "jsonp"
-        );
-        return;
-      }
+          $.get(
+            "http://ip-api.com/json",
+            function (response) {
+              if (response.countryCode.toLowerCase() == "id") {
+                window.location.replace(
+                  "https://karyakarsa.com/yansaan/myclicker-auto-clicker-gratis-dari"
+                );
+              } else {
+                window.location.replace(
+                  "https://www.patreon.com/posts/53816811"
+                );
+              }
+            },
+            "jsonp"
+          );
+          return;
+        }
         if (
           navigator.language
             .split("-")
@@ -39,8 +39,8 @@
         } else {
           window.location.replace("https://www.patreon.com/posts/53816811");
         }
-      }
-
+      };
+      Redirect();
     </script>
     <title>Redirect</title>
   </head>
