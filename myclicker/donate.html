@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer>
-      let countryID = fetch("http://ip-api.com/json")
+      let countryID = fetch("https://ip-api.com/json")
         .then(r => r.json())
         .then(r => {
           if (r.countryCode == "ID") {
