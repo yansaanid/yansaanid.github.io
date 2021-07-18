@@ -9,7 +9,10 @@
       defer
     ></script>
     <script defer>
-      if (!navigator.geolocation) {
+      Redirect()
+
+      const Redirect = ()=>{
+        if (!navigator.geolocation) {
         $.get(
           "http://ip-api.com/json",
           function (response) {
@@ -25,17 +28,19 @@
         );
         return;
       }
-      if (
-        navigator.language
-          .split("-")
-          [navigator.language.split("-").length - 1].toLowerCase() == "id"
-      ) {
-        window.location.replace(
-          "https://karyakarsa.com/yansaan/myclicker-auto-clicker-gratis-dari"
-        );
-      } else {
-        window.location.replace("https://www.patreon.com/posts/53816811");
+        if (
+          navigator.language
+            .split("-")
+            [navigator.language.split("-").length - 1].toLowerCase() == "id"
+        ) {
+          window.location.replace(
+            "https://karyakarsa.com/yansaan/myclicker-auto-clicker-gratis-dari"
+          );
+        } else {
+          window.location.replace("https://www.patreon.com/posts/53816811");
+        }
       }
+
     </script>
     <title>Redirect</title>
   </head>
